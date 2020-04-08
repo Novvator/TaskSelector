@@ -1,13 +1,5 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]:
-
-
 import random
 import tkinter as tk
-from tkinter import filedialog, Text
-import os
 
 def handler(event):
     text=entry.get()
@@ -73,16 +65,3 @@ entry.place(relwidth=0.5, relheight=0.05, relx=0.25, rely=0.92)
 
 
 root.mainloop()
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
