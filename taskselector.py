@@ -1,23 +1,16 @@
 import random
 import tkinter as tk
 
-def handler(event):
-    text=entry.get()
-    tex = ""
-    list1.append(text)
-    for i in list1:
-        tex = tex +str(i) + '\n' 
-    changeText(listView,tex)
-    entry.delete(0,tk.END)
     
 def changeText(self,textt):
-    self.configure(text=textt)
+    self.configure(text =textt)
 
-def choseTask():
-    if(len(list1)!=0):
-        changeText(label1,"The task you have to do is: " + list1[random.randint(0,len(list1)-1)])
-    else:
-        changeText(label1,"Not enough items in the To-do list")
+def chooseMovie():
+    list1.append(movielist[random.randint(0,len(movielist))])
+    tex = ""
+    for i in list1:
+        tex = tex + str(i) + '\n' 
+    changeText(listView,tex)
         
 def center_window(width=700, height=700):
     # get screen width and height
@@ -31,19 +24,26 @@ def center_window(width=700, height=700):
 
 list1 = []
 
+#open file and export movies to a listt
+file = open('watchlist.txt','r',encoding="utf8")
+f = file.readlines()
+
+movielist = []
+for line in f:
+    movielist.append(line.strip())
+    
+
 root = tk.Tk()
 center_window(700, 700)
 
-root.title('Task Selector')
-        
-root.bind("<Return>", handler)
+root.title('Movie Selector')
 
 canvas = tk.Canvas(root, height=700, width=700, bg="#809FFF")
 canvas.pack()
 
 
     
-label = tk.Label(canvas, text = "Write the tasks you have to do and press the button when you are finished", bg='white')
+label = tk.Label(canvas, text = "Press the button to select a random movie from the list", bg='white')
 label.place(relwidth=0.57, relheight=0.03, relx=0.215, rely=0.035)
 
 listView = tk.Label(canvas, bg='white', anchor= 'n')
@@ -52,11 +52,8 @@ listView.place(relwidth=0.7, relheight=0.7, relx=0.15, rely=0.1)
 label1 = tk.Label(canvas, text = "", bg="#809FFF")
 label1.place(relwidth=0.7, relheight=0.03, relx=0.15, rely=0.815)
 
-button = tk.Button(canvas, bg='gray', fg='red', text="Generate Selected Task", command= choseTask)
+button = tk.Button(canvas, bg='gray', fg='red', text="Movie time!", command= chooseMovie)
 button.place(relwidth=0.2, relheight=0.05, relx=0.4, rely=0.86)
-
-entry = tk.Entry(canvas, bg='white', justify= 'center')
-entry.place(relwidth=0.5, relheight=0.05, relx=0.25, rely=0.92)
     
 
 
